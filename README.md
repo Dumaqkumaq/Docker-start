@@ -17,7 +17,7 @@
 1. Клонировать репозиторий:
    ```bash
    git clone https://github.com/Dumaqkumaq/Docker-start
-   cd Docker-start
+   cd Docker-start-main
 Запустить контейнеры:
 ```bash
 docker-compose up -d --build
