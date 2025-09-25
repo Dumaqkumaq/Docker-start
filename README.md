@@ -38,7 +38,7 @@ docker-compose up -d --build
 │   ├── ```index.html``` - главная HTML-страница   
 │   └── ```index.php``` - дополнительная тестовая PHP-страница   
 ├── ```nginx```   
-├── ```docker-compose.yml``` - описание сервиса Nginx 
+├── ```docker-compose.yml``` - описание сервиса Nginx    
 └── ```screenshots``` - все скриншоты  
 
 
