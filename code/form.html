@@ -1,0 +1,83 @@
+<form id="myForm">
+    <head>
+        <title>Meow!</title>
+    </head>
+    <body>
+        <p style="text-align: center">Замурррчательная доставка еды!!!</p>
+        <p style="text-align: center">У нас на выбор: мяукательные блинчики, пицца и прекрасный кофе!</p>
+        <p></p>
+        <p style="text-align: center">Для заказа доставки заполните:</p>
+        <p style="text-align: center"><input type="text" name="username" placeholder="Ваше имя"></p>
+        <p style="text-align: center">  
+            <select name="city">
+                <option value="" disabled selected>Выберите город доставки</option>
+                <option value="kaliningrad">Калининград</option>
+                <option value="moscow">Москва</option>
+                <option value="gusev">Гусев</option>
+                <option value="sochi">Сочи</option>
+                <option value="piter">Просто Питер</option>
+            </select> 
+        </p>
+        <p >  
+            <ul style="text-align: center">
+                <li style="text-align: center"><input type="checkbox" checked name="food1">Вкусные блинчики<br> </li>
+                <li style="text-align: center"><input type="checkbox" checked name="food2">Сочная пицца<br> </li>
+                <li style="text-align: center"><input type="checkbox" checked name="food3">Черный кофе<br> </li>
+            </ul>
+        </p>
+        <p style="text-align: center"><input type="checkbox" name="addsauce"> Добавить соус?<br></p>
+        <p style="text-align: center"><input type="text" name="amountfood" placeholder="Кол-во порций"></p>
+        <p style="text-align: center"><input type="radio" name="delivertype" value="delf" checked> Доставить ножками?</p>
+        <p style="text-align: center"><input type="radio" name="delivertype" value="delp"> Доставить самолетом?</p>
+        <p style="text-align: center"><button type="submit">Заказать!</button></p>
+        
+    </body>
+  
+</form>
+
+<script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let user = this.username.value;
+        if(user == ""){
+            alert("Введите имя, пожалуйста");
+            return;
+        }
+
+        let city = this.city.value;
+        if(city == ""){
+            alert("Выберите город, мяу");
+            return;
+        }
+
+        let amountfood = this.amountfood.value;
+        if(amountfood == parseInt(amountfood,10)){
+            let msg = 'Мы доставим ваш заказ в ';
+            switch(city){
+                case "kaliningrad": msg+="Калининград"; break;
+                case "moscow": msg+="Москву"; break;
+                case "gusev": msg+="Гусев"; break;
+                case "sochi": msg+="Сочи"; break;
+                case "piter": msg+="Питер"; break;
+
+            }
+            msg += " в количестве "+amountfood;
+
+            if(this.addsauce.checked){
+                msg+=" и с соусом.";
+            } else { msg += "."; }
+
+            if(this.delivertype.value == "delf"){
+                msg += "\nЗаказ прилетит ножками.";
+            } else {
+                msg += "\nЗаказ придет самолетом.";
+            }
+            alert(msg);
+        } else {
+            alert("Введите число порций, пожалуйста")
+            return;
+        }
+        
+    });
+</script>

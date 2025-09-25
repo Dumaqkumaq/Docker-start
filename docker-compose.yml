@@ -4,5 +4,15 @@ services:
     image: nginx:1.27-alpine
     ports:
       - "8080:80"
+    depends_on:
+    - php
     volumes:
       - ./code:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    
+  php:
+    image: php:8.2-fpm
+    volumes:
+    - ./code:/usr/share/nginx/html
+    expose:
+    - "9000"
