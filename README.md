@@ -38,7 +38,7 @@ docker-compose up -d --build
 │   ├── ```form.html``` - форма для заполнения на HTML\JS   
 │   └── ```index.php``` - дополнительная тестовая PHP-страница   
 │   └── ```index.html``` - дополнительная тестовая HTML-страница   
-├── ```nginx```  -  конфигурация Nginx
+├── ```nginx```  -  конфигурация Nginx    
 ├── ```docker-compose.yml``` - описание сервиса Nginx    
 └── ```screenshots``` - все скриншоты  
 
