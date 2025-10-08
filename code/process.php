@@ -1,9 +1,10 @@
 <?php
-// попытка пофиксить недостаток прав в записи data.txt
+// попытка пофиксить недостаток прав в записи data.txt (+)
+// leaved here for future bug hunt
+
 // session_start();
 // ob_start();
 
-// // Диагностика прав доступа
 // echo "Current directory: " . __DIR__ . "<br>";
 // echo "Current user: " . get_current_user() . "<br>";
 // echo "UID: " . posix_getuid() . "<br>";
@@ -24,7 +25,6 @@
 
 // $line = $username . ";" . $email . "\n";
 
-// // Пробуем записать с диагностикой
 // $result = file_put_contents($filename, $line, FILE_APPEND);
 // if ($result === false) {
 //     echo "ERROR: Failed to write to file<br>";
