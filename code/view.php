@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Все данные</title>
+    <meta charset="UTF-8">
+    <title>Р’СЃРµ РґР°РЅРЅС‹Рµ</title>
 </head>
 <body>
-    <h2>Все сохранённые данные:</h2>
+    <h2>Р’СЃРµ СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ:</h2>
     <ul>
         <?php
         if(file_exists("data.txt")){
@@ -14,10 +15,10 @@
                 echo "<li>$name ($email)</li>";
             }
         } else {
-            echo "<li>Данных нет</li>";
+            echo "<li>Р”Р°РЅРЅС‹С… РЅРµС‚</li>";
         }
         ?>
     </ul>
-    <a href="index.php">На главную</a>
+    <a href="index.php">РќР° РіР»Р°РІРЅСѓСЋ</a>
 </body>
 </html>

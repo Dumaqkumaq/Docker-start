@@ -1,12 +1,12 @@
 <?php session_start(); ?>
 <?php if(isset($_SESSION['username'])): ?>
-    <p>Данные из сессии:</p>
+    <p>Р”Р°РЅРЅС‹Рµ РёР· СЃРµСЃСЃРёРё:</p>
     <ul>
-        <li>Имя: <?= $_SESSION['username'] ?></li>
+        <li>РРјСЏ: <?= $_SESSION['username'] ?></li>
         <li>Email: <?= $_SESSION['email'] ?></li>
     </ul>
 <?php else: ?>
-    <p>Данных пока нет.</p>
+    <p>Р”Р°РЅРЅС‹С… РїРѕРєР° РЅРµС‚.</p>
 <?php endif; ?>
-<a href="form.html">Заполнить форму</a> |
-<a href="view.php">Посмотреть все данные</a>
+<a href="form.html">Р—Р°РїРѕР»РЅРёС‚СЊ С„РѕСЂРјСѓ</a> |
+<a href="view.php">РџРѕСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ</a>
