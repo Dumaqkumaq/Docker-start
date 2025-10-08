@@ -15,7 +15,7 @@
                 echo "<li>$name ($email)</li>";
             }
         } else {
-            echo "<li>Данных нет</li>";
+            echo "<li>Данных нет </li>";
         }
         ?>
     </ul>
