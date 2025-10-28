@@ -2,18 +2,20 @@
 require 'db.php';
 require 'order.php';
 
-$order = new Order();
+$order = new Order($pdo);
 $all = $order->getAll();
 ?>
 
 <h2>Сохраненные данные</h2>
 <ul>
     <?php foreach($all as $row): ?>
-     Имя: <li><?= $row['name'] ?>, 
-     Кол-во: <?= $row['amount'] ?>,
-     Еда: <?= $row['food'] ?>, 
-     Добавлять соус: <?= $row['add_sauce'] 'Да' : 'Нет' ?>, 
-     Доставка: <?= $row['type_delivery'] ?></li>
+     <li>
+        Name: <?= $row['name'] ?>, 
+        Amount: <?= $row['amount'] ?>,
+        Food: <?= $row['food'] ?>, 
+        Sauce: <?= $row['add_sauce']?>, 
+        Delivery: <?= $row['type_delivery'] ?>
+    </li>
 <?php endforeach; ?>
 </ul>
 

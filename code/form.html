@@ -1,4 +1,4 @@
-<form id="myForm">
+<form id="myForm" action="process.php" method="post">
     <head>
         <title>Meow!</title>
     </head>
@@ -7,22 +7,14 @@
         <p style="text-align: center">YOU CAN ORDER mostly ANYTHING!</p>
         <p></p>
         <p style="text-align: center">FOR ORDER WRITE BELOW:</p>
-        <p style="text-align: center"><input type="text" name="username" placeholder="name></p>
-        <p >  
-            <ul style="text-align: center">
-                <li style="text-align: center"><input type="checkbox" checked name="food1">karbonara<br> </li>
-                <li style="text-align: center"><input type="checkbox" checked name="food2">pizza<br> </li>
-                <li style="text-align: center"><input type="checkbox" checked name="food3">latte<br> </li>
-            </ul>
-        </p>
+        <p style="text-align: center"><input type="text" name="username" placeholder="name"></p>
+        <p style="text-align: center"><input type="text" name="food" placeholder="latte"></p>
         <p style="text-align: center"><input type="checkbox" name="addsauce"> ADD SAUCE?<br></p>
         <p style="text-align: center"><input type="text" name="amountfood" placeholder="AMOUNT"></p>
         <p style="text-align: center"><input type="radio" name="delivertype" value="delf" checked> Deliver by foot?</p>
         <p style="text-align: center"><input type="radio" name="delivertype" value="delp"> or by plane?</p>
         <p style="text-align: center"><button type="submit">ORDER MEOW!</button></p>
-        
     </body>
-  
 </form>
 
 <script>
@@ -48,6 +40,8 @@
                 msg += "\nDELIVERING: BY PLANE.";
             }
             alert(msg);
+            // После alert отправляем форму
+            this.submit();
         } else {
             alert("THERE ARE ERROR!")
             return;

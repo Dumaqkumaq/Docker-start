@@ -13,7 +13,7 @@ services:
     build: .
     container_name: lab5_php
     volumes:
-      - ./code:/var/www/html
+      - ./code:/usr/share/nginx/html
     expose:
       - "9000"
     depends_on:
@@ -29,8 +29,9 @@ services:
       MYSQL_PASSWORD: lab5_pass
     ports:
       - "3307:3306"
-    # volumes:
-    #   - db_data:/var/lib/mysql
+    volumes:
+      - ./db_data:/usr/share/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   adminer:
     image: adminer
