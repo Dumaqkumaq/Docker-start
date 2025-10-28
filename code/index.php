@@ -5,6 +5,12 @@
         <li>Имя: <?= $_SESSION['username'] ?></li>
         <li>Email: <?= $_SESSION['email'] ?></li>
     </ul>
+<?php
+if (isset($_SESSION['api_data'])) {
+    echo "<h3>Данные из API:</h3>";
+    echo "<pre>" . print_r($_SESSION['api_data'], true) . "</pre>";
+}
+?>
 <?php if(isset($_SESSION['errors'])): ?>
     <ul style="color:red;">
         <?php foreach($_SESSION['errors'] as $error): ?>
@@ -18,4 +24,3 @@
 <?php endif; ?>
 <a href="form.html">Заполнить форму</a> |
 <a href="view.php">Посмотреть все данные</a>
-

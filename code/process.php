@@ -1,47 +1,19 @@
 <?php
-// попытка пофиксить недостаток прав в записи data.txt (+)
-// leaved here for future bug hunt
-
-// session_start();
-// ob_start();
-
-// echo "Current directory: " . __DIR__ . "<br>";
-// echo "Current user: " . get_current_user() . "<br>";
-// echo "UID: " . posix_getuid() . "<br>";
-// echo "GID: " . posix_getgid() . "<br>";
-
-// $filename = "data.txt";
-// echo "File exists: " . (file_exists($filename) ? "YES" : "NO") . "<br>";
-// if (file_exists($filename)) {
-//     echo "Is writable: " . (is_writable($filename) ? "YES" : "NO") . "<br>";
-//     echo "Permissions: " . substr(sprintf('%o', fileperms($filename)), -4) . "<br>";
-// }
-
-// $username = htmlspecialchars($_POST['username']);
-// $email = htmlspecialchars($_POST['email'] ?? '');
-
-// $_SESSION['username'] = $username;
-// $_SESSION['email'] = $email;
-
-// $line = $username . ";" . $email . "\n";
-
-// $result = file_put_contents($filename, $line, FILE_APPEND);
-// if ($result === false) {
-//     echo "ERROR: Failed to write to file<br>";
-//     error_log("Failed to write to data.txt");
-// } else {
-//     echo "SUCCESS: Written $result bytes<br>";
-// }
-
 session_start();
 ob_start();
 
+require_once 'ApiClient.php';
+
+$api = new ApiClient();
 $username = htmlspecialchars($_POST['username']);
 $email = htmlspecialchars($_POST['email'] ?? '');
 
+$url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+$apiData = $api->request($url);
+
 $_SESSION['username'] = $username;
 $_SESSION['email'] = $email;
-
+$_SESSION['api_data'] = $apiData;
 
 $errors = [];
 if(empty($username)) $errors[] = "Имя не может быть пустым";
