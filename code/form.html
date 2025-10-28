@@ -1,12 +1,57 @@
-<form id="myForm" action="process.php" method="post">
-    <input type="text" name="username" placeholder="Ваше имя" required>
-    <input type="email" name="email" placeholder="Ваш email">
-    <button type ="submit">Отправить</button>
+<form id="myForm">
+    <head>
+        <title>Meow!</title>
+    </head>
+    <body>
+        <p style="text-align: center">MEOOOOW CAFEEEE!!!</p>
+        <p style="text-align: center">YOU CAN ORDER mostly ANYTHING!</p>
+        <p></p>
+        <p style="text-align: center">FOR ORDER WRITE BELOW:</p>
+        <p style="text-align: center"><input type="text" name="username" placeholder="name></p>
+        <p >  
+            <ul style="text-align: center">
+                <li style="text-align: center"><input type="checkbox" checked name="food1">karbonara<br> </li>
+                <li style="text-align: center"><input type="checkbox" checked name="food2">pizza<br> </li>
+                <li style="text-align: center"><input type="checkbox" checked name="food3">latte<br> </li>
+            </ul>
+        </p>
+        <p style="text-align: center"><input type="checkbox" name="addsauce"> ADD SAUCE?<br></p>
+        <p style="text-align: center"><input type="text" name="amountfood" placeholder="AMOUNT"></p>
+        <p style="text-align: center"><input type="radio" name="delivertype" value="delf" checked> Deliver by foot?</p>
+        <p style="text-align: center"><input type="radio" name="delivertype" value="delp"> or by plane?</p>
+        <p style="text-align: center"><button type="submit">ORDER MEOW!</button></p>
+        
+    </body>
+  
 </form>
 
 <script>
     document.getElementById("myForm").addEventListener("submit", function(e) {
-        const username = document.querySelector("[name='username']").value;
-        alert("Вы ввели имя: " + username);
+        e.preventDefault();
+
+        let user = this.username.value;
+        if(user == ""){
+            alert("WRITE A NAME, PLZ");
+            return;
+        }
+
+        let amountfood = this.amountfood.value;
+        if(amountfood == parseInt(amountfood,10)){
+            let msg = 'UR ORDER: \n';
+            
+            msg += "AMOUNT: "+amountfood;
+            msg+="\nSAUCE: "+this.addsauce.checked;
+
+            if(this.delivertype.value == "delf"){
+                msg += "\nDELIVERING: BY FOOT.";
+            } else {
+                msg += "\nDELIVERING: BY PLANE.";
+            }
+            alert(msg);
+        } else {
+            alert("THERE ARE ERROR!")
+            return;
+        }
+        
     });
 </script>

@@ -1,47 +1,17 @@
 <?php
-require_once 'api_functions.php';
-session_start();
-ob_start();
+require 'db.php';
+require 'order.php';
 
-require_once 'ApiClient.php';
+$order = new Order($pdo);
 
-$api = new ApiClient();
-$username = htmlspecialchars($_POST['username']);
-$email = htmlspecialchars($_POST['email'] ?? '');
-$cacheFile = 'api_cache.json';
+$name = htmlspecialchars($_POST['name'] ?? 'Гость');
+$food = htmlspecialchars($_POST['food'] ?? 'Латте');
+$amount = intval($_POST['amount']);
+$add_sauce = isset($_POST['add_sauce']) ? 1 : 0;
+$type_delivery = htmlspecialchars($_POST['type_delivery']);
 
-$cacheTtl = 300;
+$order->add($name, $amount, $food, $add_sauce, $type_delivery);
 
-
-$_SESSION['username'] = $username;
-$_SESSION['email'] = $email;
-$_SESSION['api_data'] = fetchExchangeRates();
-if (file_exists($cacheFile) && time() - filemtime($cacheFile) < $cacheTtl) {
-    $cached = json_decode(file_get_contents($cacheFile), true);
-    $_SESSION['api_data'] = $cached;
-} else {
-    $apiData = fetchExchangeRates();
-    file_put_contents($cacheFile, json_encode($apiData, JSON_UNESCAPED_UNICODE));
-    $_SESSION['api_data'] = $apiData;
-}
-
-
-setcookie("last_submission", date('Y-m-d H:i:s'), time() + 3600, "/");
-
-$errors = [];
-if(empty($username)) $errors[] = "Имя не может быть пустым";
-if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Некорректный email";
-
-if(!empty($errors)){
-    $_SESSION['errors'] = $errors;
-    header("Location: index.php");
-    exit();
-}
-
-$line = $username . ";" . $email . "\n";
-file_put_contents("data.txt", $line, FILE_APPEND);
-
-ob_end_clean();
 header("Location: index.php");
 exit();
 ?>
