@@ -15,6 +15,8 @@ $_SESSION['username'] = $username;
 $_SESSION['email'] = $email;
 $_SESSION['api_data'] = $apiData;
 
+setcookie("last_submission", date('Y-m-d H:i:s'), time() + 3600, "/");
+
 $errors = [];
 if(empty($username)) $errors[] = "Имя не может быть пустым";
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Некорректный email";

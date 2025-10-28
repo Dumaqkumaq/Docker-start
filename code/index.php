@@ -5,7 +5,21 @@
         <li>Имя: <?= $_SESSION['username'] ?></li>
         <li>Email: <?= $_SESSION['email'] ?></li>
     </ul>
+<?php //looked over internet for div info ?>
+<?php if (isset($_COOKIE['last_submission'])): ?>
+        <div style="background: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+            <p>Последняя отправка формы: <?php echo htmlspecialchars($_COOKIE['last_submission']); ?></p>
+        </div>
+    <?php endif; ?>
 <?php
+require_once 'UserInfo.php';
+$info = UserInfo::getInfo();
+
+echo "<h3>Информация о пользователе:</h3>";
+foreach ($info as $key => $val) {
+    echo htmlspecialchars($key) . ': ' . htmlspecialchars($val) . '<br>';
+}
+
 if (isset($_SESSION['api_data'])) {
     echo "<h3>Данные из API:</h3>";
     echo "<pre>" . print_r($_SESSION['api_data'], true) . "</pre>";
