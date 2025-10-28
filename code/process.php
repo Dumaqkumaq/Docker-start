@@ -1,4 +1,5 @@
 <?php
+require_once 'api_functions.php';
 session_start();
 ob_start();
 
@@ -7,13 +8,23 @@ require_once 'ApiClient.php';
 $api = new ApiClient();
 $username = htmlspecialchars($_POST['username']);
 $email = htmlspecialchars($_POST['email'] ?? '');
+$cacheFile = 'api_cache.json';
 
-$url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
-$apiData = $api->request($url);
+$cacheTtl = 300;
+
 
 $_SESSION['username'] = $username;
 $_SESSION['email'] = $email;
-$_SESSION['api_data'] = $apiData;
+$_SESSION['api_data'] = fetchExchangeRates();
+if (file_exists($cacheFile) && time() - filemtime($cacheFile) < $cacheTtl) {
+    $cached = json_decode(file_get_contents($cacheFile), true);
+    $_SESSION['api_data'] = $cached;
+} else {
+    $apiData = fetchExchangeRates();
+    file_put_contents($cacheFile, json_encode($apiData, JSON_UNESCAPED_UNICODE));
+    $_SESSION['api_data'] = $apiData;
+}
+
 
 setcookie("last_submission", date('Y-m-d H:i:s'), time() + 3600, "/");
 
