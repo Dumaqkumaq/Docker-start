@@ -26,7 +26,7 @@
 docker-compose up -d --build
 ```   
 
-Вывести результат:
+Вывести результат:   
 1.```cd code```   
 2.```php index.php```   
 
