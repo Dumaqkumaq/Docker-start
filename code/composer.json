@@ -1,12 +1,5 @@
 {
-   "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
   "require": {
-    "guzzlehttp/guzzle": "^7.10",
-      "predis/predis": "^3.2"
+    "guzzlehttp/guzzle": "^7.8"
   }
-  
 }
