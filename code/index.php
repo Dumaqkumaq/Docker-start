@@ -1,22 +1,13 @@
 <?php
-require 'db.php';
-require 'order.php';
 
-$order = new Order($pdo);
-$all = $order->getAll();
+require 'vendor/autoload.php';
+
+use App\RedisExample;
+use App\ElasticExample;
+use App\ClickhouseExample;
+
+// Redis
+$redis = new RedisExample();
+echo $redis->setValue('user:101', json_encode(['name' => 'Alice', 'age' => 25]));
+echo $redis->getValue('user:101');
 ?>
-
-<h2>Сохраненные данные</h2>
-<ul>
-    <?php foreach($all as $row): ?>
-     <li>
-        Name: <?= $row['name'] ?>, 
-        Amount: <?= $row['amount'] ?>,
-        Food: <?= $row['food'] ?>, 
-        Sauce: <?= $row['add_sauce']?>, 
-        Delivery: <?= $row['type_delivery'] ?>
-    </li>
-<?php endforeach; ?>
-</ul>
-
-<a href="form.html">Заполнить форму</a>

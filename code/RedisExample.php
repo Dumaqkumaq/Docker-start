@@ -25,3 +25,4 @@ class RedisExample
         return $response->getBody()->getContents();
     }
 }
+?>
