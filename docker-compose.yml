@@ -2,20 +2,31 @@ version: '3.8'
 services:
   php:
     build: .
-    container_name: lab6_php
+    container_name: lab7_php
     volumes:
       - ./code:/usr/share/nginx/html
     ports:
-      - "8080:80"
+      - "9000"
     depends_on:
-      - redis
+      - rabbitmq
 
-  redis:
-    image: redis:7
-    container_name: lab6_redis
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: lab7_rabbit
     ports:
-      - "6379:6379"
-
-volumes:
-  redis_data:
-  ch_data:
+      - "5672:5672"
+      - "15672:15672"
+  nginx:
+    image: nginx:alpine
+    container_name: lab7_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./code:/var/www/html
+    depends_on:
+      - php
+    networks:
+    - lab7_network
+networks:
+  lab7_network:
+    driver: bridge
