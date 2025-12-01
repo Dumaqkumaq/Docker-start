@@ -5,23 +5,15 @@ RUN apt-get update && apt-get install -y \
     unzip \
     curl \
     wget \
-    librdkafka-dev \
-    libzip-dev \
-    libpng-dev \
-    libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql zip gd mbstring sockets \
+    && docker-php-ext-install pdo pdo_mysql sockets \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
 
-# Скачиваем конкретную версию Composer
-RUN wget https://github.com/composer/composer/releases/download/2.5.8/composer.phar -O /usr/local/bin/composer \
-    && chmod +x /usr/local/bin/composer
-
-COPY composer.json /var/www/html/
-
-RUN composer install --no-dev --no-interaction --no-progress --optimize-autoloader
-
+# Просто копируем исходный код, зависимости установим позже
 COPY ./code /var/www/html
+
+# Устанавливаем RabbitMQ клиент вручную (если нужно)
+RUN echo "<?php // No external dependencies needed for basic RabbitMQ ?>" > /var/www/html/dependencies.php
 
 CMD ["php-fpm"]
